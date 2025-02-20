@@ -10,13 +10,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@popperjs/core": "^2.9.2",
+    "bootstrap": "^5.0.2",
     "react": "^19.0.0",
+    "react-copy-to-clipboard": "^5.0.3",
     "react-dom": "^19.0.0",
-    "roughjs": "^4.6.6"
+    "react-toast": "^1.0.3",
+    "react-toastify": "^7.0.4",
+    "roughjs": "^4.6.6",
+    "socket.io-client": "^4.1.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
     "@types/react": "^19.0.8",
+    "@types/react-copy-to-clipboard": "^5.0.7",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react-swc": "^3.5.0",
     "eslint": "^9.19.0",
