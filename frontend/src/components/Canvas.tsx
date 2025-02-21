@@ -50,7 +50,7 @@ const Canvas: React.FC<CanvasProps> = ({
     const context = canvas.getContext("2d");
 
     if (context) {
-      context.strokeWidth = 5;
+      // context.strokeWidth = 5;
       context.scale(2, 2);
       context.lineCap = "round";
       context.strokeStyle = color;
