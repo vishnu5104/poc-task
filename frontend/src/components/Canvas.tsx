@@ -71,7 +71,6 @@ const Canvas: React.FC<CanvasProps> = ({
 
     context.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Draw background image if exists
     if (backgroundImage) {
       context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
     }
@@ -177,10 +176,8 @@ const Canvas: React.FC<CanvasProps> = ({
       className="col-md-8 overflow-hidden border border-dark px-0 mx-auto mt-3"
       style={{ height: "500px" }}
     >
-      {/* File Upload */}
       <input type="file" accept="image/*" onChange={handleImageUpload} />
 
-      {/* Canvas Wrapper */}
       <div
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
