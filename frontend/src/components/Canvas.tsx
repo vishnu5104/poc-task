@@ -50,7 +50,7 @@ const Canvas: React.FC<CanvasProps> = ({
     const context = canvas.getContext("2d");
 
     if (context) {
-      // context.strokeWidth = 5;
+      context.strokeWidth = 5;
       context.scale(2, 2);
       context.lineCap = "round";
       context.strokeStyle = color;
@@ -184,7 +184,6 @@ const Canvas: React.FC<CanvasProps> = ({
         onMouseUp={handleMouseUp}
         style={{ position: "relative", width: "100%", height: "100%" }}
       >
-        {/* Canvas */}
         <canvas ref={canvasRef} />
       </div>
     </div>

@@ -21,6 +21,7 @@ const JoinCreateRoom = ({ uuid, setUser, setRoomJoined }) => {
     });
     setRoomJoined(true);
   };
+
   const handleJoinSubmit = (e) => {
     e.preventDefault();
     if (!joinName) return toast.dark("Please enter your name!");
@@ -36,98 +37,86 @@ const JoinCreateRoom = ({ uuid, setUser, setRoomJoined }) => {
   };
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-md-12">
-          <h1 className="text-center my-5">
-            Welcome To Realtime Whiteboard Sharing App
-          </h1>
-        </div>
-      </div>
-      <div className="row mx-5 mt-5">
-        <div className="col-md-5 p-5 border mx-auto">
-          <h1 className="text-center text-primary mb-5">Create Room</h1>
-          <form onSubmit={handleCreateSubmit}>
-            <div className="form-group my-2">
+    <div className="min-h-screen flex items-center justify-center bg-gray-900 px-4">
+      <div className="w-full max-w-3xl p-8 bg-white/10 backdrop-blur-lg rounded-xl shadow-lg border border-gray-700">
+        <h1 className="text-3xl font-bold text-white text-center mb-6">
+          🎨 Design
+        </h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="p-6 bg-gray-800 rounded-lg shadow-md">
+            <h2 className="text-xl font-semibold text-indigo-400 mb-4 text-center">
+              ✨ Create Room
+            </h2>
+            <form onSubmit={handleCreateSubmit}>
               <input
                 type="text"
-                placeholder="Name"
-                className="form-control"
+                placeholder="Enter your name"
+                className="w-full px-4 py-3 mb-4 text-white bg-gray-700 border-none rounded-lg outline-none focus:ring-2 focus:ring-indigo-400"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
-            </div>
-            <div className="input-group my-2 border align-items-center">
               <input
                 type="text"
-                className="form-control border-0 outline-0"
+                className="w-full px-4 py-3 text-white bg-gray-700 border-none rounded-lg outline-none mb-2"
                 value={roomId}
-                readOnly={true}
-                style={{
-                  boxShadow: "none",
-                  zIndex: "0 !important",
-                  fontsize: "0.89rem !important",
-                }}
+                readOnly
               />
-              <div className="input-group-append">
+              <div className="flex space-x-2">
                 <button
-                  className="btn btn-outline-primary  border-0 btn-sm"
                   type="button"
                   onClick={() => setRoomId(uuid())}
+                  className="w-1/2 px-4 py-3 text-sm text-gray-300 bg-gray-600 rounded-lg hover:bg-gray-500 transition"
                 >
-                  Generate
+                  🔄 Generate
                 </button>
-                &nbsp;&nbsp;
                 <CopyToClipboard
                   text={roomId}
-                  onCopy={() => toast.success("Room Id Copied To Clipboard!")}
+                  onCopy={() => toast.success("Room ID Copied!")}
                 >
                   <button
-                    className="btn btn-outline-dark border-0 btn-sm"
                     type="button"
+                    className="w-1/2 px-4 py-3 text-sm text-gray-300 bg-gray-600 rounded-lg hover:bg-gray-500 transition"
                   >
-                    Copy
+                    📋 Copy
                   </button>
                 </CopyToClipboard>
               </div>
-            </div>
-            <div className="form-group mt-5">
-              <button type="submit" className="form-control btn btn-dark">
-                Create Room
+              <button
+                type="submit"
+                className="w-full mt-4 px-4 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition shadow-md"
+              >
+                🚀 Create Room
               </button>
-            </div>
-          </form>
-        </div>
-        <div className="col-md-5 p-5 border mx-auto">
-          <h1 className="text-center text-primary mb-5">Join Room</h1>
-          <form onSubmit={handleJoinSubmit}>
-            <div className="form-group my-2">
+            </form>
+          </div>
+
+          <div className="p-6 bg-gray-800 rounded-lg shadow-md">
+            <h2 className="text-xl font-semibold text-green-400 mb-4 text-center">
+              ✅ Join Room
+            </h2>
+            <form onSubmit={handleJoinSubmit}>
               <input
                 type="text"
-                placeholder="Name"
-                className="form-control"
+                placeholder="Enter your name"
+                className="w-full px-4 py-3 mb-4 text-white bg-gray-700 border-none rounded-lg outline-none focus:ring-2 focus:ring-green-400"
                 value={joinName}
                 onChange={(e) => setJoinName(e.target.value)}
               />
-            </div>
-            <div className="form-group my-2">
               <input
                 type="text"
-                className="form-control outline-0"
+                placeholder="Enter Room ID"
+                className="w-full px-4 py-3 mb-4 text-white bg-gray-700 border-none rounded-lg outline-none focus:ring-2 focus:ring-green-400"
                 value={joinRoomId}
                 onChange={(e) => setJoinRoomId(e.target.value)}
-                placeholder="Room Id"
-                style={{
-                  boxShadow: "none",
-                }}
               />
-            </div>
-            <div className="form-group mt-5">
-              <button type="submit" className="form-control btn btn-dark">
-                Join Room
+              <button
+                type="submit"
+                className="w-full mt-4 px-4 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition shadow-md"
+              >
+                🔗 Join Room
               </button>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     </div>
