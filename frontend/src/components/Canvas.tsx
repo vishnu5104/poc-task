@@ -35,14 +35,18 @@ const Canvas: React.FC<CanvasProps> = ({
   socket,
 }) => {
   const [isDrawing, setIsDrawing] = useState(false);
+  const [backgroundImage, setBackgroundImage] =
+    useState<HTMLImageElement | null>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+
     canvas.height = window.innerHeight * 2;
     canvas.width = window.innerWidth * 2;
     canvas.style.width = `${window.innerWidth}px`;
     canvas.style.height = `${window.innerHeight}px`;
+
     const context = canvas.getContext("2d");
 
     if (context) {
@@ -59,35 +63,18 @@ const Canvas: React.FC<CanvasProps> = ({
     if (ctx.current) ctx.current.strokeStyle = color;
   }, [color]);
 
-  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
-    const { offsetX, offsetY } = e.nativeEvent;
-
-    if (tool === "pencil") {
-      setElements((prevElements) => [
-        ...prevElements,
-        {
-          offsetX,
-          offsetY,
-          path: [[offsetX, offsetY]],
-          stroke: color,
-          element: tool,
-        },
-      ]);
-    } else {
-      setElements((prevElements) => [
-        ...prevElements,
-        { offsetX, offsetY, stroke: color, element: tool },
-      ]);
-    }
-
-    setIsDrawing(true);
-  };
-
   useLayoutEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas || !ctx.current) return;
     const roughCanvas = rough.canvas(canvas);
-    ctx.current.clearRect(0, 0, canvas.width, canvas.height);
+    const context = ctx.current;
+
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw background image if exists
+    if (backgroundImage) {
+      context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+    }
 
     elements.forEach((ele) => {
       if (ele.element === "rect" && ele.width && ele.height) {
@@ -114,9 +101,34 @@ const Canvas: React.FC<CanvasProps> = ({
         });
       }
     });
+
     const canvasImage = canvas.toDataURL();
     socket.emit("drawing", canvasImage);
-  }, [elements]);
+  }, [elements, backgroundImage]);
+
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    const { offsetX, offsetY } = e.nativeEvent;
+
+    if (tool === "pencil") {
+      setElements((prevElements) => [
+        ...prevElements,
+        {
+          offsetX,
+          offsetY,
+          path: [[offsetX, offsetY]],
+          stroke: color,
+          element: tool,
+        },
+      ]);
+    } else {
+      setElements((prevElements) => [
+        ...prevElements,
+        { offsetX, offsetY, stroke: color, element: tool },
+      ]);
+    }
+
+    setIsDrawing(true);
+  };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!isDrawing) return;
@@ -149,15 +161,35 @@ const Canvas: React.FC<CanvasProps> = ({
     setIsDrawing(false);
   };
 
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const img = new Image();
+    img.src = URL.createObjectURL(file);
+    img.onload = () => {
+      setBackgroundImage(img);
+    };
+  };
+
   return (
     <div
       className="col-md-8 overflow-hidden border border-dark px-0 mx-auto mt-3"
       style={{ height: "500px" }}
-      onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
     >
-      <canvas ref={canvasRef} />
+      {/* File Upload */}
+      <input type="file" accept="image/*" onChange={handleImageUpload} />
+
+      {/* Canvas Wrapper */}
+      <div
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        style={{ position: "relative", width: "100%", height: "100%" }}
+      >
+        {/* Canvas */}
+        <canvas ref={canvasRef} />
+      </div>
     </div>
   );
 };
