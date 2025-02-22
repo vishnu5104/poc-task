@@ -1,0 +1,17 @@
+- [ ] eraser
+- [ ] ability select elements
+    - [ ] change its attrs (like color, size..)
+- [ ] show history
+- [ ] live mouse pointer tracking (research about how to implement, may websockets are slow for this HINT: UDP)
+- [ ] add liveness to images(assets)
+- [ ] there sluginess while drawing when the canvas have image in it
+- [ ] We can more default shapes
+- [ ] Ability to import shapes from excalidraw
+    - [ ] Ability save it to user specific library
+- [ ] Create a 3d space (Beta)
+    - [ ] should able to add common shapes (square, sphere)
+- [ ] Migrate to next.ts
+- [ ] write snapshot testing using playwright
+- [ ] change to atomic design
+- [ ] Collect user analytics
+- [ ] Expand your creativity :) (think about some api, simple gets, puts. use reactquery in fe)
