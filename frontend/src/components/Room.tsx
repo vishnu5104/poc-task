@@ -51,9 +51,7 @@ const Room = ({ userNo, socket, setUsers, setUserNo }) => {
 
   return (
     <div className="min-h-screen flex flex-col items-center bg-gray-900 text-white p-4">
-      <h1 className="text-3xl font-bold text-center mt-6">
-        🎨 Realtime Drawing App - Users Online: {userNo}
-      </h1>
+      <h1 className="text-3xl font-bold text-center mt-6">🎨 Draw: {userNo}</h1>
 
       <div className="w-full max-w-4xl bg-white/10 backdrop-blur-lg rounded-lg shadow-lg p-6 mt-6 border border-gray-700">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">

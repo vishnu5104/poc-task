@@ -1,13 +1,13 @@
 const users = [];
 
-// Join user to chat
+
 const userJoin = (id, username, room, host, presenter) => {
   const user = { id, username, room, host, presenter };
 
   users.push(user);
   return user;
 };
-// User leaves chat
+
 const userLeave = (id) => {
   const index = users.findIndex((user) => user.id === id);
 
@@ -16,7 +16,7 @@ const userLeave = (id) => {
   }
 };
 
-//get users
+
 const getUsers = (room) => {
   const RoomUsers = [];
   users.map((user) => {
