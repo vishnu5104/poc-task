@@ -8,13 +8,6 @@ import { useViewportSize } from "@/common/hooks/useViewportSize";
 import { socket } from "@/common/lib/socket";
 
 import { useBoardPosition } from "../../hooks/useBoardPosition";
-import { useCtx } from "../../hooks/useCtx";
-import { useDraw } from "../../hooks/useDraw";
-import { useMovesHandlers } from "../../hooks/useMovesHandlers";
-import { useRefs } from "../../hooks/useRefs";
-import { useSocketDraw } from "../../hooks/useSocketDraw";
-import Background from "./Background";
-import MiniMap from "./Minimap";
 
 const Canvas = () => {
   const { canvasRef, bgRef, undoRef, redoRef } = useRefs();
@@ -39,25 +32,7 @@ const Canvas = () => {
     setDragging(false);
   }, []);
 
-  useEffect(() => {
-    const handleKey = (e: KeyboardEvent) => {
-      setDragging(e.ctrlKey);
-    };
 
-    window.addEventListener("keyup", handleKey);
-    window.addEventListener("keydown", handleKey);
-
-    const undoBtn = undoRef.current;
-    const redoBtn = redoRef.current;
-
-    undoBtn?.addEventListener("click", handleUndo);
-    redoBtn?.addEventListener("click", handleRedo);
-
-    return () => {
-      window.removeEventListener("keyup", handleKey);
-      window.removeEventListener("keydown", handleKey);
-      undoBtn?.removeEventListener("click", handleUndo);
-      redoBtn?.removeEventListener("click", handleRedo);
     };
   }, [canvasRef, dragging, handleRedo, handleUndo, redoRef, undoRef]);
 
