@@ -2,7 +2,6 @@ import { useRoom } from "@/common/recoil/room";
 
 import RoomContextProvider from "../context/Room.context";
 import Canvas from "./board/Canvas";
-import MousePosition from "./board/MousePosition";
 import MousesRenderer from "./board/MousesRenderer";
 import MoveImage from "./board/MoveImage";
 import SelectionBtns from "./board/SelectionBtns";
@@ -24,7 +23,6 @@ const Room = () => {
         <SelectionBtns />
         <MoveImage />
         <Canvas />
-        <MousePosition />
         <MousesRenderer />
         <Chat />
       </div>

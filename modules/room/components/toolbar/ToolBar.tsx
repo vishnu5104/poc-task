@@ -60,19 +60,10 @@ const ToolBar = () => {
 
   return (
     <>
-      <motion.button
-        className="btn-icon absolute bottom-1/2 -left-2 z-50 h-10 w-10 rounded-full bg-black text-2xl transition-none lg:hidden"
-        animate={{ rotate: opened ? 0 : 180 }}
-        transition={{ duration: 0.2, ease: DEFAULT_EASE }}
-        onClick={() => setOpened(!opened)}
-      >
-        <FiChevronRight />
-      </motion.button>
       <motion.div
-        className="absolute left-10 top-[50%] z-50 grid grid-cols-2 items-center gap-5 rounded-lg bg-zinc-900 p-5 text-white 2xl:grid-cols-1"
+        className="absolute left-[520px] top-5 z-50 flex -translate-x-1/2 items-center gap-5 rounded-lg bg-zinc-900 p-5 text-white shadow-lg"
         animate={{
-          x: opened ? 0 : -160,
-          y: "-50%",
+          y: opened ? 0 : -100,
         }}
         transition={{
           duration: 0.2,
@@ -80,9 +71,7 @@ const ToolBar = () => {
         }}
       >
         <HistoryBtns />
-
-        <div className="h-px w-full bg-white 2xl:hidden" />
-        <div className="h-px w-full bg-white" />
+        <div className="hidden h-px w-full bg-white 2xl:block" />
 
         <ShapeSelector />
         <ColorPicker />
@@ -90,11 +79,9 @@ const ToolBar = () => {
         <ModePicker />
         <ImagePicker />
 
-        <div className="2xl:hidden"></div>
-        <div className="h-px w-full bg-white 2xl:hidden" />
-        <div className="h-px w-full bg-white" />
-
+        <div className="hidden h-px w-full bg-white 2xl:block" />
         <BackgroundPicker />
+
         <button className="btn-icon text-2xl" onClick={handleShare}>
           <IoIosShareAlt />
         </button>

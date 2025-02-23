@@ -39,7 +39,6 @@ const Canvas = () => {
     setDragging(false);
   }, []);
 
-  // SETUP
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       setDragging(e.ctrlKey);
@@ -69,13 +68,11 @@ const Canvas = () => {
   return (
     <div className="relative h-full w-full overflow-hidden">
       <motion.canvas
-        // SETTINGS
         ref={canvasRef}
         width={CANVAS_SIZE.width}
         height={CANVAS_SIZE.height}
         className={`absolute top-0 z-10 ${dragging && "cursor-move"}`}
         style={{ x, y }}
-        // DRAG
         drag={dragging}
         dragConstraints={{
           left: -(CANVAS_SIZE.width - width),
@@ -85,7 +82,6 @@ const Canvas = () => {
         }}
         dragElastic={0}
         dragTransition={{ power: 0, timeConstant: 0 }}
-        // HANDLERS
         onMouseDown={(e) => handleStartDrawing(e.clientX, e.clientY)}
         onMouseUp={handleEndDrawing}
         onMouseMove={(e) => {
