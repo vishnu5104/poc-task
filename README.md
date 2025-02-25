@@ -79,6 +79,6 @@ They can also chat with each other while collaborating.
 
 ## Technologies Used
 
-- Next.js (or your preferred framework)
-- Socket.io for real-time communication
+- Next.js
+- Socket.io for real-time communication and chat
 - Bun/npm/Yarn for package management
