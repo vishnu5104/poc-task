@@ -61,7 +61,7 @@ const ToolBar = () => {
   return (
     <>
       <motion.div
-        className="absolute left-[520px] top-5 z-50 flex -translate-x-1/2 items-center gap-5 rounded-lg bg-zinc-900 p-5 text-white shadow-lg"
+        className="absolute right-5 top-44 z-50 flex flex-col items-center gap-5 rounded-lg bg-zinc-900 p-5 text-white shadow-lg"
         animate={{
           y: opened ? 0 : -100,
         }}
