@@ -9,6 +9,7 @@ import Chat from "./chat/Chat";
 import NameInput from "./NameInput";
 import ToolBar from "./toolbar/ToolBar";
 import UserList from "./UserList";
+import MousePosition from "./board/MousePosition";
 
 const Room = () => {
   const room = useRoom();
@@ -23,6 +24,7 @@ const Room = () => {
         <SelectionBtns />
         <MoveImage />
         <Canvas />
+        <MousePosition />
         <MousesRenderer />
         <Chat />
       </div>
